@@ -1,0 +1,160 @@
+ده سيناريو لو حليته تمام يبقى انت كده متقن الاوامر بتاعت التعامل مع الملفات والمجلدات 
+
+ستجد الحل النموذجي اسفل كل خطوة 
+
+# 🎬 **نص السيناريو الكامل — ProjectX**
+
+أنت مسؤول نظام (Linux Admin) في شركة، وتم تكليفك بإدارة مشروع اسمه **projectX** موجود داخل الـ Home directory.
+المشروع لسه جديد، وعايز تعمل فيه تنظيم للملفات، نسخ ونسخ احتياطي، روابط، تشفير، قراءة Logs، حذف آمن، ومقارنة ملفات.
+
+## **🟦 المطلوب منك في السيناريو:**
+
+1. إنشاء مجلد رئيسي اسمه **projectX**.
+
+mkdir projectX
+cd projectX
+
+2. إنشاء ملفات Logs وملف إعدادات (config) وملف بيانات المستخدمين:
+
+   * log1.txt
+   * log2.txt
+   * config.cfg
+   * users.csv
+
+touch log1.txt
+touch log2.txt
+touch config.cfg
+touch users.csv
+
+
+
+
+
+
+
+
+3. اكتب داخل كل ملف البيانات الآتية:
+
+### **محتوى log1.txt**
+
+* System Boot Started at 10:00 AM
+* Loading services...
+
+echo "System Boot Started at 10:00 AM" > log1.txt
+echo "Loading services..." >> log1.txt
+
+### **محتوى log2.txt**
+
+* ERROR 404: File missing
+* ERROR 500: Server overload
+
+echo "ERROR 404: File missing" > log2.txt
+echo "ERROR 500: Server overload" >> log2.txt
+
+
+### **محتوى config.cfg**
+
+* VERSION=1.0
+* MODE=production
+* MAX_CONNECTIONS=50
+
+echo "VERSION=1.0" > config.cfg
+echo "MODE=production" >> config.cfg
+echo "MAX_CONNECTIONS=50" >> config.cfg
+
+### **محتوى users.csv**
+
+* name,age,role
+* Ali,22,Admin
+* Omar,19,User
+* Sara,25,Manager
+
+echo "name,age,role" > users.csv
+echo "Ali,22,Admin" >> users.csv
+echo "Omar,19,User" >> users.csv
+echo "Sara,25,Manager" >> users.csv
+
+---
+
+4. اعرض محتوى الملفات، وادمج محتويات log2 داخل log1.
+cat log1.txt
+cat log2.txt
+cat config.cfg
+
+5. اعرض log1 باستخدام head / tail / more / less.
+cat log2.txt >> log1.txt
+
+
+6. افتح config.cfg وعدّل عليه باستخدام nano أو vim.
+head log1.txt
+tail log1.txt
+more log1.txt
+less log1.txt
+nano config.cfg
+or
+vim config.cfg
+
+
+
+7. اعمل مجلد اسمه **backup**.
+mkdir backup
+
+8. انسخ ملفات Logs إلى مجلد backup.
+cp log1.txt backup/log1_backup.txt
+
+9. اعمل نسخة كاملة (المجلد كامل )من backup باسم **backup_copy**.
+cp -r backup backup_copy
+
+10. انقل ملف config.cfg إلى مجلد backup.
+mv config.cfg backup/config.cfg
+
+11. اعمل رابط سيمبولك للملف log1_backup.txt داخل المشروع.
+ln -s backup/log1_backup.txt log_link
+
+12. شفّر ملف log2.txt بكلمة سر، وبعدها فك تشفيره.
+gpg -c log2.txt
+gpg log2.txt.gpg
+
+
+13. اعرض إحصائيات كلمات الملفات (wc).
+wc -w log1.txt
+
+
+14. اعرض إحصائيات كل ملفات المجلد باستخدام xargs.
+ls | xargs wc
+
+15. اعرض عمود الأسماء فقط من users.csv باستخدام cut.
+cut -d "," -f1 users.csv
+echo "A-B-C-D" | cut -d "-" -f3
+
+
+16. امسح log2.txt حذف آمن باستخدام shred.
+shred -u log2.txt
+
+17. احذف مجلد backup_copy مرة عادي ومرة إجباري.
+rm -r backup_copy
+rm -rf backup_copy
+
+18. اعمل مقارنة بين log1.txt ونسخته داخل backup.
+diff log1.txt backup/log1_backup.txt
+
+
+19. اعمل سكربت بسيط اسمه script.sh يحتوي:
+
+* جملة ترحيب بالمشروع
+* عرض تاريخ اليوم
+  ثم قم بتشغيله باستخدام source.
+echo "echo Welcome to projectX system" > script.sh
+echo "echo Today's date is: $(date)" >> script.sh
+
+source script.sh
+
+
+20. أخيراً: خزّن مخرجات أمر ls في ملف اسمه files_list.txt بدون عرض النتيجة على الشاشة.
+ls | tee files_list.txt >/dev/null
+
+
+---
+
+
+
