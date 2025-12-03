@@ -23,5 +23,4 @@ This project serves as:
 - A personal documentation of your progress as you cover more Linux topics  
 - A portfolio item demonstrating hands-on Linux experience  
 
-## 📂 Repository Structure
 
